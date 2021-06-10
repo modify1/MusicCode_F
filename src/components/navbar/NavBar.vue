@@ -19,6 +19,5 @@ export default {
   .navbar {
     height: 90px;
     background: #fff;
-    border-bottom: 1px solid gray;
   }
 </style>

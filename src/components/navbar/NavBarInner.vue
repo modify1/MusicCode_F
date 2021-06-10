@@ -13,34 +13,72 @@
       </ul>
     </div>
     <div class="top_search">
-      <div style="padding-left: 11px;height: 36px;width: 215px;border: 1px gray solid;margin-top: 26px;border-radius: 5px">
+      <div
+          style="padding-left: 11px;height: 36px;width: 215px;border: 1px gray solid;margin-top: 26px;border-radius: 5px">
         <input type="text" class="search_input" placeholder="搜索音乐、MV、歌单、用户">
         <i class="iconfont" style="margin-left: 10px;font-size: 18px;line-height: 36px">&#xe60e;</i>
       </div>
     </div>
     <div class="top_opt">
-      <div class="top_login" @mouseover="MenuIsShow">
-        <div><img src="../../assets/img/navbar/user.jpg" alt="" style="width: 100%;cursor: pointer"/></div>
-        <ul style="position: absolute">
-          <li>绿钻豪华版</li>
-          <li>付费音乐包</li>
-          <li>评论通知</li>
-          <li>提出登录</li>
-        </ul>
-      </div>
+      <Dropdown>
+        <div class="top_login">
+          <img src="../../assets/img/navbar/user.jpg" alt="" style="width: 100%;cursor: pointer"/>
+        </div>
+        <DropdownMenu slot="dropdownMenu">
+          <DropdownMenuItem>
+            <span>绿钻豪华版</span>
+            <span slot="text">开通立即赠送付费音乐包</span>
+            <Btn slot="right">开通</Btn>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <span>付费音乐包</span>
+            <span slot="text">畅享千万包月曲库</span>
+            <Btn slot="right">开通</Btn>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <span>评论通知</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem><span>退出登录</span></DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
       <div class="top_vip">
-        <span>开通VIP</span>
-        <i class="iconfont">&#xe67e;</i>
+        <Dropdown>
+          <span>开通VIP</span>
+          <i class="iconfont">&#xe67e;</i>
+          <DropdownMenu slot="dropdownMenu" style="width: 110px;">
+            <DropdownMenuItem :bg="true">
+              <span>开通绿钻</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem :bg="true">
+              <span>开通付费包</span>
+            </DropdownMenuItem>
+          </DropdownMenu>
+        </Dropdown>
       </div>
       <div class="top_recharge">
-        <span>充值</span>
-        <i class="iconfont">&#xe67e;</i>
+        <Dropdown>
+          <span>充值</span>
+          <i class="iconfont">&#xe67e;</i>
+          <DropdownMenu slot="dropdownMenu" style="width: 80px;">
+            <DropdownMenuItem :bg="true">
+              <span>购买乐币</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem :bg="true">
+              <span>充值饭票</span>
+            </DropdownMenuItem>
+          </DropdownMenu>
+        </Dropdown>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Dropdown from "../dropdown/Dropdown";
+import DropdownMenu from "../dropdown/DropdownMenu"
+import DropdownMenuItem from "../dropdown/DropdownMenuItem"
+import Btn from "../btn/Btn";
+
 export default {
   name: "NavBarInner",
   data() {
@@ -53,17 +91,19 @@ export default {
       this.activeIndex = index;
     }
   },
-  computed: {
-    MenuIsShow() {
-      return true;
-    }
+  computed: {},
+  components: {
+    Dropdown,
+    DropdownMenu,
+    DropdownMenuItem,
+    Btn
   }
 }
 </script>
 
 <style scoped>
 .active {
-  color: white!important;
+  color: white !important;
   background: #31c27c;
 }
 
@@ -71,11 +111,11 @@ export default {
   color: #9FF57EFF;
 }
 
-
 .inner {
   width: 1200px;
   height: 100%;
   margin: 0 auto;
+  border-bottom: 1px solid #f2f2f2;
 
   display: flex;
 }
@@ -107,7 +147,7 @@ export default {
 }
 
 .top_search {
-  line-height: 0!important;
+  line-height: 0 !important;
   margin-left: 20px;
 }
 
@@ -121,7 +161,6 @@ export default {
 
 .top_login {
   margin-top: 25px;
-  margin-left: 20px;
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -131,7 +170,7 @@ export default {
 .top_opt {
   width: auto;
   display: flex;
-  line-height: normal!important;
+  line-height: normal !important;
   margin-left: 10px;
 }
 
@@ -139,7 +178,7 @@ export default {
   margin-left: 10px;
 }
 
-.top_vip ,.top_recharge{
+.top_vip, .top_recharge {
   height: 38px;
   margin-top: 25px;
   /*background: #31c27c;*/
@@ -147,15 +186,22 @@ export default {
   line-height: 38px;
   text-align: center;
   border-radius: 3px;
-  font-size: 15px!important;
+  font-size: 15px !important;
+  cursor: pointer;
 }
 
-.top_vip > i ,.top_recharge > i {
+.top_vip > i, .top_recharge > i {
   margin-left: 5px;
 }
 
 .top_vip {
   width: 100px;
+}
+
+.top_vip:hover, .top_recharge:hover {
+  background: #31c27c;
+  border: 1px solid #31c27c;
+  color: white;
 }
 
 .top_recharge {
