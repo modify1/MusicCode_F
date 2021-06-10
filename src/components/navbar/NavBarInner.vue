@@ -5,11 +5,11 @@
     </div>
     <div class="top_nav">
       <ul>
-        <li><p @click="activeBG(1)" @mouseover="activeClass(1)" @mouseleave="activeClass(0)" :class="{active: 1 === activeIndex,activeBg:1 === activeBGid}">音乐馆</p></li>
-        <li><p @click="activeBG(2)" @mousemove="activeClass(2)" @mouseleave="activeClass(0)" :class="{active: 2 === activeIndex,activeBg:2 === activeBGid}">我的音乐</p></li>
-        <li><p @click="activeBG(3)" @mouseover="activeClass(3)" @mouseleave="activeClass(0)" :class="{active: 3 === activeIndex,activeBg:3 === activeBGid}">客户端</p></li>
-        <li><p @click="activeBG(4)" @mouseover="activeClass(4)" @mouseleave="activeClass(0)" :class="{active: 4 === activeIndex,activeBg:4 === activeBGid}">开放平台</p></li>
-        <li><p @click="activeBG(5)" @mouseover="activeClass(5)" @mouseleave="activeClass(0)" :class="{active: 5 === activeIndex,activeBg:5 === activeBGid}">VIP</p></li>
+        <li><p @click="activeBG(1)" :class="{active: 1 === activeIndex}">音乐馆</p></li>
+        <li><p @click="activeBG(2)" :class="{active: 2 === activeIndex}">我的音乐</p></li>
+        <li><p @click="activeBG(3)" :class="{active: 3 === activeIndex}">客户端</p></li>
+        <li><p @click="activeBG(4)" :class="{active: 4 === activeIndex}">开放平台</p></li>
+        <li><p @click="activeBG(5)" :class="{active: 5 === activeIndex}">VIP</p></li>
       </ul>
     </div>
     <div class="top_search">
@@ -45,16 +45,12 @@ export default {
   name: "NavBarInner",
   data() {
     return {
-      activeIndex: 0,
-      activeBGid: 0,
+      activeIndex: 1
     }
   },
   methods: {
-    activeClass(index) {
-      this.activeIndex = index;
-    },
     activeBG(index) {
-      this.activeBGid = index;
+      this.activeIndex = index;
     }
   },
   computed: {
@@ -67,12 +63,12 @@ export default {
 
 <style scoped>
 .active {
-  color: #9FF57EFF;
+  color: white!important;
+  background: #31c27c;
 }
 
-.activeBg {
-  color: white;
-  background: #31c27c;
+.top_nav p:hover {
+  color: #9FF57EFF;
 }
 
 
